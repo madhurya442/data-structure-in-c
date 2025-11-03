@@ -1,0 +1,17 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+        int *a;
+        int i;
+        a=(int*)malloc(3*sizeof(int));
+        a[0]=10;
+        a[1]=20;
+        a[2]=30;
+        for(i=0;i<3;i++)
+        {
+                printf("%d",a[i]);
+        }
+        free(a);
+        return 0;
+}
