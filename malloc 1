@@ -3,8 +3,8 @@
 int main()
 {
         int*p;
-        p=(int*)malloc(4);
-        *p=25;
+        p=(int*)malloc(size of(int));
+        *p=50;
         printf("value=%d/n",*p);
         free(p);
         return 0;
