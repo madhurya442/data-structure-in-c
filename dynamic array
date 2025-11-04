@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int *arr;
+int size = 0, capacity = 2;
+
+void push(int value) {
+    if (size == capacity) {
+        capacity *= 2;
+        arr = (int *)realloc(arr, capacity * sizeof(int));
+        if (!arr) {
+            printf("Memory error!\n");
+            exit(1);
+        }
+    }
+    arr[size++] = value;
+}
+
+int main() {
+    printf("Program by: Madhurya\nUSN: 1SV24CS066\n\n");
+
+    arr = (int *)malloc(capacity * sizeof(int));
+    int n, val;
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++) {
+        printf("Enter value %d: ", i + 1);
+        scanf("%d", &val);
+        push(val);
+    }
+
+    printf("\nDynamic Array:\n");
+    for (int i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\nFinal Capacity = %d\n", capacity);
+
+    free(arr);
+    return 0;
+}
