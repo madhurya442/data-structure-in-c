@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *arr, n;
+    int sum = 0, max;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    // Dynamically allocate memory for n integers
+    arr = (int *)malloc(n * sizeof(int));
+
+    if (arr == NULL) {
+        printf("Memory not allocated.\n");
+        return 1;
+    }
+
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", (arr + i));  // reading using pointer
+    }
+
+    // Initialize max with first element
+    max = *arr;
+
+    // Using pointer arithmetic to find sum and max
+    for (int i = 0; i < n; i++) {
+        sum += *(arr + i);
+        if (*(arr + i) > max)
+            max = *(arr + i);
+    }
+
+    printf("\n--- Output ---\n");
+    printf("Sum = %d\n", sum);
+    printf("Maximum = %d\n", max);
+
+    // Display name and USN
+    printf("\nProgram by: Madhurya\n");
+    printf("USN: 1SV24CS066\n");
+
+    // Free allocated memory
+    free(arr);
+
+    return 0;
+}
