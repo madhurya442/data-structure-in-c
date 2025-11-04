@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+unsigned char* createImage(int W, int H) {
+    return (unsigned char*)malloc(W * H * sizeof(unsigned char));
+}
+
+void setPixel(unsigned char *img, int W, int x, int y, unsigned char val) {
+    img[y * W + x] = val;
+}
+
+unsigned char getPixel(unsigned char *img, int W, int x, int y) {
+    return img[y * W + x];
+}
+
+void printImage(unsigned char *img, int W, int H) {
+    printf("\nImage Matrix:\n");
+    for (int y = 0; y < H; y++) {
+        for (int x = 0; x < W; x++) {
+            printf("%3d ", getPixel(img, W, x, y));
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int W, H;
+    printf("Name: Madhurya, USN: 1SV24CS066\n");
+    printf("Enter width and height: ");
+    scanf("%d %d", &W, &H);
+
+    unsigned char *image = createImage(W, H);
+
+    // Input pixel values
+    printf("Enter %d pixel values (0-255):\n", W * H);
+    for (int y = 0; y < H; y++) {
+        for (int x = 0; x < W; x++) {
+            int val;
+            scanf("%d", &val);
+            setPixel(image, W, x, y, (unsigned char)val);
+        }
+    }
+
+    // Print image matrix
+    printImage(image, W, H);
+
+    // Free memory
+    free(image);
+    return 0;
+}
