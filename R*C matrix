@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int R, C;
+    printf("Program by: Madhurya\nUSN: 1SV24CS066\n\n");
+
+    printf("Enter rows and columns: ");
+    scanf("%d %d", &R, &C);
+
+    int *a = (int *)malloc(R * C * sizeof(int));
+    if (!a) return 1;
+
+    printf("Enter elements:\n");
+    for (int i = 0; i < R; i++)
+        for (int j = 0; j < C; j++)
+            scanf("%d", a + i * C + j);
+
+    printf("\nOriginal Matrix:\n");
+    for (int i = 0; i < R; i++) {
+        for (int j = 0; j < C; j++)
+            printf("%d ", *(a + i * C + j));
+        printf("\n");
+    }
+
+    printf("\nTranspose Matrix:\n");
+    if (R != C) {
+        int *t = (int *)malloc(C * R * sizeof(int));
+        for (int i = 0; i < R; i++)
+            for (int j = 0; j < C; j++)
+                *(t + j * R + i) = *(a + i * C + j);
+
+        for (int i = 0; i < C; i++) {
+            for (int j = 0; j < R; j++)
+                printf("%d ", *(t + i * R + j));
+            printf("\n");
+        }
+        free(t);
+    } else {
+        for (int i = 0; i < C; i++) {
+            for (int j = 0; j < R; j++)
+                printf("%d ", *(a + j * C + i));
+            printf("\n");
+        }
+    }
+
+    free(a);
+    return 0;
+}
